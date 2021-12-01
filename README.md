@@ -1,2 +1,2 @@
-# Advent-of-Code
-Advent of Code
+# Advent of Code
+AoC repo
