@@ -1,6 +1,5 @@
 with open("input.txt", "r") as f:
-    measurements = f.read()
-    measurements = measurements.split('\n')
+    measurements = f.read().split('\n')
     measurements.remove('')
 
     previous_depth = int(measurements[0])
