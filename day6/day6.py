@@ -1,4 +1,5 @@
 from collections import deque           # to rotate list
+from time import sleep
 
 with open("input.txt", "r") as f:
     state_str = f.read().split(",")
@@ -23,4 +24,5 @@ def solve(school):
     return total
 
 update(nb_fish, 256)
+#print(nb_fish)
 print(f"Number of fish: {solve(nb_fish)}")
