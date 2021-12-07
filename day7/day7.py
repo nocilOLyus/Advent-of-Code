@@ -19,6 +19,6 @@ def solve(part):
     return min_fuel
 
 part1 = solve(1)
-print(f"Part 1:\n\tCheapest position: {part1[0]}\n\tFuel usage: {part1[1]}")
+print(f"Part 1:\n\tCheapest position: {part1[1]}\n\tFuel usage: {part1[0]}")
 part2 = solve(2)
-print(f"Part 2:\n\tCheapest position: {part2[1]}\n\tFuel usage: {part2[0]}")
+print(f"Part 2:\n\tCheapest position: {part2[1]}\n\tFuel usage: {int(part2[0])}")
