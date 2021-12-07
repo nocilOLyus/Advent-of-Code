@@ -15,7 +15,6 @@ def fuel_usage(pos, part):
 def solve(part):
     furthest = max(data)
     positions = [pos for pos in range(furthest + 1)] 
-    cheapest_pos = 0
     min_fuel = min([fuel_usage(pos, part) for pos in positions])
     return min_fuel
 

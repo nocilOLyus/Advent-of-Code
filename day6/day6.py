@@ -1,5 +1,4 @@
 from collections import deque           # to rotate list
-from time import sleep
 
 with open("input.txt", "r") as f:
     state_str = f.read().split(",")
