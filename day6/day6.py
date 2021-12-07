@@ -24,5 +24,4 @@ def solve(school):
     return total
 
 update(nb_fish, 256)
-#print(nb_fish)
 print(f"Number of fish: {solve(nb_fish)}")

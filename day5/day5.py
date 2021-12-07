@@ -20,26 +20,6 @@ def get_max_coords(points):
 
 max_coords = get_max_coords(points)
 
-#def part1(lines):
-#    # [[['0', '9'], ['5', '9']]]
-#    max_coords = get_max_coords(lines)
-#    overlap = 0
-#    for y in range(max_coords[1] + 1):
-#        for x in range(max_coords[0] + 1):
-#            value = 0
-#            for line in points:
-#                startX = min(int(line[0][0]), int(line[1][0]))
-#                startY = min(int(line[0][1]), int(line[1][1]))
-#                endX = max(int(line[0][0]), int(line[1][0]))
-#                endY = max(int(line[0][1]), int(line[1][1]))
-#                if startX <= x <= endX and startY == y == endY: value += 1
-#                if startX == x == endX and startY <= y <= endY: value += 1
-#            if value != 0: print(value, end="")
-#            else: print(".", end="")
-#            if value >= 2: overlap += 1
-#        print()
-#    return overlap
-
 
 def solve(lines, diagonal = False, draw = False):
     coords = []
@@ -82,6 +62,6 @@ def solve(lines, diagonal = False, draw = False):
     print(to_write, "\n")
     return overlaps
 
-print(f"\nPart 1: {solve(points, draw = False)}")
+print(f"Part 1: {solve(points, draw = False)}")
 
-print(f"\nPart 2: {solve(points, diagonal = True, draw = False)}")
+print(f"Part 2: {solve(points, diagonal = True, draw = False)}")
