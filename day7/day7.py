@@ -1,16 +1,20 @@
+from statistics import median
+
 with open("input.txt", "r") as f:
     data = [int(pos) for pos in f.read().strip().split(",")]
 
 def fuel_usage(pos, part):
     fuel = 0
     if part == 1:
+        pos = int(median(data))
         for original_pos in data:
             fuel += abs(original_pos - pos)
+        return (fuel, pos)
     elif part == 2:
         for original_pos in data:
             n = abs(original_pos - pos)
             fuel += ((n**2) + n) / 2
-    return (fuel, pos)
+        return (fuel, pos)
 
 def solve(part):
     furthest = max(data)
