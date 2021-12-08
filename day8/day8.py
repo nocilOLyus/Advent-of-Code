@@ -73,7 +73,7 @@ def solve2(signals):
                         for l in display[2]:
                             if l not in nb: f = l                           # f
 
-                elif len(common_7) == 2 and len(common_4) == 2:
+                elif not len(c) and len(common_7) == 2 and len(common_4) == 2:
                         for l in display[0]:
                             if l not in nb: c = l                           # c
 
