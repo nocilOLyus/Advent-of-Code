@@ -42,7 +42,7 @@ def solve2(signals):
 
         common_7 = set(display[0]) & set(display[1])
         for l in display[1]:
-            if l not in common_7: a = l                                         # a
+            if l not in common_7: a = l                                     # a
 
         for nb in display:
             common_4 = set(display[2]) & set(nb)
