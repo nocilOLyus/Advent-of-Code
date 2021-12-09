@@ -1,6 +1,6 @@
 from collections import deque           # to rotate list
 
-with open("input.txt", "r") as f:
+with open("example.txt", "r") as f:
     state_str = f.read().split(",")
     state = [int(fish) for fish in state_str]
 

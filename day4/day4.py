@@ -74,6 +74,22 @@ def sum_unmarked(board):
             sum += int(boards[board][i])
     return sum
 
+def print_board(board, marked_board):
+    for index, nb in enumerate(board):
+        print('\t', end="")
+        if index in marked_board:
+            if len(nb) == 1:
+                print(f"\033[1;32m{nb}   ", end="")
+            else:
+                print(f"\033[1;32m{nb}  ", end="")
+        else:
+            if len(nb) == 1:
+                print(f"\033[1;31m{nb}   ", end="")
+            else:
+                print(f"\033[1;31m{nb}  ", end="")
+        if (index + 1) % 5 == 0:
+            print()
+    print("\033[1;0m\n")
 
 def part1():
     reset_marked_boards()
@@ -83,7 +99,8 @@ def part1():
     sum_u = sum_unmarked(winning_board)
     score = sum_u * last_number
     #print(f"Winning board: {winning_board}\nLast number: {last_number}\nSum: {sum_u}")
-    print(f"Part 1: {score}")
+    print(f"\033[1;31mPart 1: \033[1;32m{score}\n")
+    print_board(boards[winning_board], marked_boards[winning_board])
 
 part1()
 
@@ -98,6 +115,7 @@ def part2():
     marked_boards[losing_board] = last_bingo_board
     sum_u = sum_unmarked(losing_board)
     score = sum_u * last_number
-    print(f"Part 2: {score}")
+    print(f"\033[1;31mPart 2: \033[1;32m{score}\n")
+    print_board(boards[losing_board], marked_boards[losing_board])
 
 part2()
