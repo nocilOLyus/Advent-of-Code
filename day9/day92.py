@@ -7,32 +7,18 @@ line_len = len(data[0])
 
 def print_map(grid, to_print):
     height_map = "\033[1;32m" + (line_len * "- ") + '\n'
-    color = -1
 
     for y_grid, line in enumerate(grid):
         for x_grid, height in enumerate(line):
             if ("low", x_grid, y_grid) in to_print:
                 height_map += f"\033[1;36m{height} "
-                color = '6'
             elif height != '9':
-                if (x_grid, y_grid) in all_water:
-                    if color == '0':
-                        height_map += f"{height} "
-                    else:
-                        height_map += f"\033[1;0m{height} "
-                    color = '0'
+                if (x_grid, y_grid) in all_water or (x_grid, y_grid, int(height)) in low_pts:
+                    height_map += f"\033[1;0m{height} "
                 else:
-                    if color == '5':
-                        height_map += f"{height} "
-                    else:
-                        height_map += f"\033[1;35m{height} "
-                    color = '5'
+                    height_map += f"\033[1;35m{height} "
             else:
-                if color == '2':
-                    height_map += f"{height} "
-                else:
-                    height_map += f"\033[1;32m{height} "
-                color = '2'
+                height_map += f"\033[1;32m{height} "
         height_map += '\n'
     print(f"\r{height_map}")
 
@@ -56,18 +42,15 @@ def part1(grid, show_map = False):
 
     if show_map:
         print_map(grid, to_print)
-        #sleep(1)
+        sleep(1)
     return risk_level
 
 water = []
 all_water = []
-all_water += low_pts
 def basin(x_grid, y_grid, anim = False):
     global water, all_water
     grid = data[:]
     added = []
-    if (x_grid, y_grid) not in all_water:
-        added.append((x_grid, y_grid))
 
     if int(x_grid) != 0 and grid[y_grid][x_grid - 1] != '9' and (x_grid - 1, y_grid) not in water:
         added.append((x_grid - 1, y_grid))
@@ -84,24 +67,25 @@ def basin(x_grid, y_grid, anim = False):
     if len(added):
         water += added
         all_water += added
-
-    #if anim and len(all_water) % 20 == 0:
-        #print_map(data, low_pts)
-        #sleep(0.01)
-    for pt in added:
-        basin(pt[0], pt[1])
+        if anim:
+            print_map(data, low_pts)
+            #sleep(0.1)
+        for pt in added:
+            basin(pt[0], pt[1])
 
 def part2(anim = False):
-    #global low_pts
+    global low_pts
     
-    if anim: print_map(data, low_pts)
-    #sleep(1)
+    if anim:
+        print_map(data, low_pts)
+        sleep(1)
 
     basin_sizes = []
     for pt in low_pts:              # (x, y, height)
         basin(pt[0], pt[1], anim = anim)
-        if anim: print_map(data, low_pts)
+        #if anim: print_map(data, low_pts)
         basin_size = len(water)
+        #print(f"pt: {pt}, size: {basin_size}")
         basin_sizes.append(basin_size)
         water.clear()
     basin_sizes.sort()
