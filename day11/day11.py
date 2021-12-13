@@ -1,7 +1,7 @@
 from time import sleep
 import copy
 
-with open("bigger_input.txt", "r") as f:
+with open("input.txt", "r") as f:
     octopuses = [list(line) for line in f.read().strip().split('\n')]
 
 og_octopuses = [[int(d) for d in line] for y, line in enumerate(octopuses)]
@@ -15,7 +15,7 @@ flashed = []
 def print_octos(octopuses):
     global flashes
 
-    to_print = "\r"
+    to_print = "\033[;H"
     for line in octopuses:
         for nb in line:
             if nb == 0 or nb >= 10:
@@ -24,7 +24,7 @@ def print_octos(octopuses):
                 to_print += f"\033[1;35m{nb} "
         to_print += "\n"
     print(to_print)
-    sleep(0.02)
+    sleep(0.05)
 
 def step(octopuses, steps, sync = False, show_octos = 0):
     global flashes
@@ -83,7 +83,8 @@ def update(octopuses, flashed, show_octos = 0):
     flashed.clear()
 
 octopuses = copy.deepcopy(og_octopuses)
-step(octopuses, 100, show_octos = 0)
+print("\033[3J")
+step(octopuses, 100, show_octos = 2)
 print(f"Part 1: {flashes}")
 octopuses = copy.deepcopy(og_octopuses)
-step(octopuses, 1, sync = True, show_octos = 0)
+step(octopuses, 1, sync = True, show_octos = 2)

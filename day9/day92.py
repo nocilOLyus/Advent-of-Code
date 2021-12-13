@@ -20,7 +20,7 @@ def print_map(grid, to_print):
             else:
                 height_map += f"\033[1;32m{height} "
         height_map += '\n'
-    print(f"\r{height_map}")
+    print(f"\033[3J{height_map}")
 
 low_pts = []
 def part1(grid, show_map = False):
@@ -93,5 +93,6 @@ def part2(anim = False):
     if anim: print_map(data, low_pts)
     return basin_sizes[-1] * basin_sizes[-2] * basin_sizes[-3]
 
+print("\033[;H")
 print(f"\n\033[1;35mPart 1: \033[1;32m{part1(data, show_map = True)}\033[1;0m\n")
 print(f"\n\033[1;35mPart 2: \033[1;32m{part2(anim = True)}\033[1;0m\n")
